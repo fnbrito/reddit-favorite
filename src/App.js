@@ -34,11 +34,20 @@ export default function App() {
 
   function getPosts() {
     if (inputValue === "") return;
+    
     fetch("https://www.reddit.com/r/" + inputValue + "/hot.json?limit=10")
-      .then((response) => response.json())
+      .then((response) => handleResponse(response))
+      //.then((response) => response.json())
       .then((data) =>
-        setCurrentPosts(data.data.children.map((child) => child.data))
-      );
+        setCurrentPosts(data.data.children.map((child) => child.data)))
+      .catch(err => console.error(err));
+  }
+
+  function handleResponse(res) {
+    if(res.ok) {
+      return res.json()
+    }
+    console.log(new Error("Banned/invalid subreddit or network error"));
   }
 
   function getPostsById() {
