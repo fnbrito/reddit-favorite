@@ -15,11 +15,16 @@ export default function App() {
 
   useEffect(() => {
     getPosts();
-  }, [currentPosts.length]);
+    const storedFavorites = localStorage.getItem('favs');
+    if (storedFavorites !== null && storedFavorites !== "") {
+      setFavorites(JSON.parse(storedFavorites));
+    }
+  }, []);
 
   useEffect(() => {
     getPostsById();
-  }, [favorites.length]);
+  }, [favorites.length])
+
 
   function handleInputChange(newValue) {
     if (newValue.trim() === "") return;
@@ -49,6 +54,9 @@ export default function App() {
     const index = favorites.findIndex((favorite) => favorite === post);
     if (index === -1) {
       setFavorites([...favorites, post]);
+      
+      console.log("Storing " + post + " in local storage...");
+      localStorage.setItem('favs', JSON.stringify(favorites));
     }
     //getPostsById();
   }
@@ -60,8 +68,9 @@ export default function App() {
         ...favorites.slice(0, index),
         ...favorites.slice(index + 1),
       ]);
+
+      localStorage.setItem('favs', JSON.stringify(favorites));
     }
-    //getPostsById();
   }
 
   return (
