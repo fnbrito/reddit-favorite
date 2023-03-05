@@ -1,38 +1,84 @@
+body {
+  background-color: #282c34;
+}
+
 .App {
   text-align: center;
+  color: white;
+}
+
+.rounded {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 10vmin;
+  padding: 0;
+  border-radius: 0;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 0.5s alternate-reverse;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(-10deg);
+  }
+  to {
+    transform: rotate(20deg);
   }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.App-list ul{
+  list-style-type: none;
+}
+.App-list{
+  padding: 5px;
+  display: block;
+  border-color: white;
+}
+.App-list span {
+  text-align: end;
+  border-style: ridge;
+  border-width: 1px;
+  border-color: rgb(65, 58, 58);
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  width: 80%;
+  text-align: left;
+}
+
+.App-list button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5em;
+}
+
+.Fave {
+  color: yellow;
+}
+
+.Unfave {
+  color: white;
 }
